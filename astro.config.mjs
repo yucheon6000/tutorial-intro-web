@@ -6,6 +6,6 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   integrations: [mdx(), react()],
-  site: "https://yucheon6000.github.io",
-  base: "tutorial-intro-web"
+  site: "https://knugame.kr",
+  // base: "tutorial-intro-web"
 });
