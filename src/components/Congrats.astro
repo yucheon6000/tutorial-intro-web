@@ -1,0 +1,49 @@
+---
+interface Props {
+    name: string;
+    message: string;
+    role: string;
+    active?: boolean;
+}
+
+const { name, message, role, active } = Astro.props;
+console.log("asfdasdfasdf");
+---
+
+<div class=`swiper-slide congrats ${active ? "active" : ""}`>
+    <div class="profile">
+        <div class="image"></div>
+        <div class="role">{role}</div>
+        <div class="name">{name}</div>
+    </div>
+    <div class="message">{message}</div>
+</div>
+<style>
+    .congrats {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        column-gap: 55px;
+        background-color: var(--primary);
+        color: white;
+    }
+
+    .profile {
+        flex: 1 1 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius: 100%;
+        background-color: white;
+    }
+
+    .message {
+        flex: 1 1 60%;
+    }
+</style>

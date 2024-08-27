@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import PageTitie from "../components/PageTitie.astro";
+import Menu from "../components/Menu.astro";
+import YellowSmallTitle from "../components/YellowSmallTitle.astro";
+import BlackSmallTitle from "../components/BlackSmallTitle.astro";
+import Congrats from "../components/Congrats.astro";
+
+const allCongrats = await Astro.glob("./congrats/*.md");
+---
+
+<Layout title="Welcome to Astro.">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+    ></script>
+    <Menu />
+    <PageTitie title="ABOUT" subtitle="졸업전시회" />
+    <main>
+        <YellowSmallTitle>About Exhibition</YellowSmallTitle>
+        <BlackSmallTitle>전시 소개</BlackSmallTitle>
+
+        <!-- 전시 소개 영상 -->
+        <BlackSmallTitle>전시 소개 영상</BlackSmallTitle>
+        <iframe
+            class="end-block"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/FlyJpenSCYw?si=nEyI3663iyPVp4rg"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+
+        <!-- 축사 -->
+        <YellowSmallTitle>Congratulation</YellowSmallTitle>
+        <BlackSmallTitle>축사</BlackSmallTitle>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {
+                    allCongrats.map((cong, idx) => (
+                        <Congrats
+                            active={idx == 0}
+                            name={cong.frontmatter.name}
+                            role={cong.frontmatter.role}
+                            role={cong.frontmatter.role}
+                            message={cong.rawContent()}
+                        />
+                    ))
+                }
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </main>
+</Layout>
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+/>
+<script
+    is:inline
+    src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<script is:inline>
+    new Swiper(".mySwiper", {
+        centeredSlides: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+</script>

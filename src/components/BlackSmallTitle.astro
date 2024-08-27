@@ -1,0 +1,26 @@
+---
+interface Props {
+    textAline?: string;
+    color?: string;
+    bottomMargin?: number;
+}
+
+const { textAline, color, bottomMargin } = Astro.props;
+---
+
+<p><slot /></p>
+<style
+    define:vars={{
+        textAline,
+        color: color || "var(--black)",
+        bottomMargin: (bottomMargin || 100) + "px",
+    }}
+>
+    p {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--color);
+        margin-bottom: var(--bottomMargin);
+        text-align: var(--textAline);
+    }
+</style>

@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import PageTitie from "../components/PageTitie.astro";
+import Menu from "../components/Menu.astro";
+import YellowSmallTitle from "../components/YellowSmallTitle.astro";
+import BlackSmallTitle from "../components/BlackSmallTitle.astro";
+import ProjectButton from "../components/ProjectButton.astro";
+const allProjects = await Astro.glob("./project/*.md");
+
+allProjects.map((a) => console.log(a));
+---
+
+<Layout title="Welcome to Astro.">
+    <Menu />
+    <PageTitie title="PROJECT" subtitle="프로젝트" />
+    <main>
+        <YellowSmallTitle>About Exhibition</YellowSmallTitle>
+        <BlackSmallTitle>전시 소개</BlackSmallTitle>
+
+        <div class="card-group">
+            {
+                allProjects.map((project) => (
+                    <ProjectButton
+                        path={project.url}
+                        name={project.frontmatter.title}
+                        image={project.frontmatter.posterImg}
+                    />
+                ))
+            }
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .card-group {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 25px; /* 자식 요소들 간의 가로 간격 설정 */
+        justify-content: flex-start; /* 요소들을 왼쪽 정렬 */
+    }
+</style>

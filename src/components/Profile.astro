@@ -1,0 +1,62 @@
+---
+interface Props {
+	name: string;
+	role: string;
+	email: string;
+}
+
+const { name, role, email } = Astro.props;
+---
+
+<div class="profile">
+	<div class="image"></div>
+	<div class="name-and-role">
+		<div class="name">{name}</div>
+		<div class="role">{role}</div>
+	</div>
+	<div class="email">{email}</div>
+</div>
+<style>
+	.profile {
+		min-width: 169px; /* 최대 너비를 동일하게 설정 */
+		max-width: calc((100% / 5) - 16px); /* 최대 너비를 동일하게 설정 */
+		flex: 1 1 calc((100% / 5) - 16px); /* 5개 기준으로 요소 크기 설정 */
+		margin-bottom: 16px; /* 아래쪽 여백 추가 */
+		box-sizing: border-box;
+	}
+	
+	.image {
+		width: 100%;
+		border-radius: 8px;
+		height: auto;
+		aspect-ratio: 3 / 4;
+		background-color: var(--primary);
+		margin-bottom: 20px;
+	}
+
+	.name-and-role {
+		display: flex;
+		flex-direction: row;
+		column-gap: 8px;
+		margin-bottom: 8px;
+	}
+
+	.name {
+		font-weight: 800;
+		font-size: 18px;
+	}
+
+	.role {
+		font-weight: 400;
+		font-size: 18px;
+		color: #95969C;
+	}
+
+	.email {
+		font-weight: 400;
+		font-size: 14px;
+		color: #B5B9C6;
+		text-wrap: wrap;
+		overflow-wrap: anywhere;
+	}
+</style>

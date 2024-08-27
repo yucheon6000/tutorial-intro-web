@@ -1,0 +1,98 @@
+---
+import BlackSmallTitle from "../components/BlackSmallTitle.astro";
+import Card from "../components/Card.astro";
+import Menu from "../components/Menu.astro";
+import PageTitie from "../components/PageTitie.astro";
+import Profile from "../components/Profile.astro";
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+    <Menu />
+    <PageTitie title={frontmatter.title} subtitle={frontmatter.team} />
+
+    <main>
+        <BlackSmallTitle>게임 소개</BlackSmallTitle>
+
+        <div class="poster-and-description end-block">
+            <img class="poster" src={frontmatter.posterImg} />
+            <slot class="description" />
+        </div>
+
+        <BlackSmallTitle>게임 플레이 영상</BlackSmallTitle>
+        <iframe
+            class="video end-block"
+            width="560"
+            height="315"
+            src=`https://www.youtube.com/embed/${frontmatter.youtube}`
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+
+        <BlackSmallTitle>팀원</BlackSmallTitle>
+        <div class="profile-group">
+            {
+                frontmatter.profileNames.map((name: string, idx: number) => (
+                    <Profile
+                        name={name}
+                        role={frontmatter.profileRoles[idx]}
+                        email={frontmatter.profileEmails[idx]}
+                    />
+                ))
+            }
+        </div>
+    </main>
+</Layout>
+<style>
+    .poster-and-description {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        column-gap: 50px;
+    }
+
+    .poster {
+        border-radius: 10px;
+    }
+
+    .poster,
+    .description {
+        flex: 1;
+        max-width: calc(
+            50% - 25px
+        ); /* 양쪽 여백을 고려해 이미지의 최대 너비 설정 */
+        height: auto; /* 이미지 비율 유지 */
+    }
+
+    @media (width <= 1000px) {
+        .poster-and-description {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .poster {
+            max-width: calc(100% - 70px);
+            margin-bottom: 30px;
+        }
+
+        .description {
+            max-width: 100%;
+        }
+    }
+
+    .video {
+        border-radius: 10px;
+        margin-bottom: 100px;
+    }
+
+    .profile-group {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 16px; /* 자식 요소들 간의 가로 간격 설정 */
+        justify-content: flex-start; /* 요소들을 왼쪽 정렬 */
+    }
+</style>
