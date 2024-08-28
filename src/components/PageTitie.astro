@@ -54,16 +54,16 @@ const { title, subtitle } = Astro.props;
     }
 
     .title {
-        font-size: 150px;
-        margin-bottom: -50px;
+        font-size: min(23vw, 150px);
+        margin-bottom: max(-7vw, -44px);
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: white;
         text-shadow: #02143ecc 0 6px 10px;
     }
 
     .sub-title {
-        font-size: 60px;
-        -webkit-text-stroke-width: 3px;
+        font-size: min(60px, 17vw);
+        -webkit-text-stroke-width: max(0.2vw, 3px);
         -webkit-text-stroke-color: var(--primary);
         text-shadow: #44444440 0 4px 4px;
     }
@@ -75,15 +75,5 @@ const { title, subtitle } = Astro.props;
         transform: translateX(-50%);
         bottom: -25px;
         text-align: center;
-    }
-
-    @media (width <= 1000px) {
-        .page-title {
-            height: 300px;
-        }
-        .title {
-            font-size: 90px;
-            margin-bottom: -30px;
-        }
     }
 </style>
