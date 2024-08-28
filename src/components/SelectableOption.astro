@@ -1,0 +1,27 @@
+---
+interface Props {
+    className?: string;
+    active?: boolean;
+}
+
+const { active, className } = Astro.props;
+---
+
+<span class=`selectable-option ${active ? "active" : ""} ${className}`>
+    <slot />
+</span>
+
+<style>
+    span {
+        padding: 15px 55px;
+        font-weight: 800;
+        font-size: 24px;
+        border-radius: 100px;
+        cursor: pointer;
+    }
+
+    span.active {
+        color: white;
+        background-color: var(--primary);
+    }
+</style>

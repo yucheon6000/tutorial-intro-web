@@ -6,21 +6,40 @@ import Menu from "../components/Menu.astro";
 import YellowSmallTitle from "../components/YellowSmallTitle.astro";
 import BlackSmallTitle from "../components/BlackSmallTitle.astro";
 import ProjectButton from "../components/ProjectButton.astro";
-const allProjects = await Astro.glob("./project/*.md");
-
-allProjects.map((a) => console.log(a));
+import SelectableOption from "../components/SelectableOption.astro";
+const allGames = await Astro.glob("./project/*.md");
+const allPortfolios = await Astro.glob("./project/*.md");
 ---
 
 <Layout title="Welcome to Astro.">
     <Menu />
     <PageTitie title="PROJECT" subtitle="프로젝트" />
-    <main>
-        <YellowSmallTitle>About Exhibition</YellowSmallTitle>
-        <BlackSmallTitle>전시 소개</BlackSmallTitle>
 
-        <div class="card-group">
+    <main>
+        <!-- <YellowSmallTitle>About Exhibition</YellowSmallTitle>
+        <BlackSmallTitle>전시 소개</BlackSmallTitle> -->
+
+        <div class="selectable-option-group">
+            <SelectableOption active className="game">GAMES</SelectableOption>
+            <SelectableOption className="portfolio">PORTFOLIOS</SelectableOption
+            >
+        </div>
+
+        <div class="card-group game">
             {
-                allProjects.map((project) => (
+                allGames.map((project) => (
+                    <ProjectButton
+                        path={project.url}
+                        name={project.frontmatter.title}
+                        image={project.frontmatter.posterImg}
+                    />
+                ))
+            }
+        </div>
+
+        <div class="card-group portfolio d-none">
+            {
+                allPortfolios.map((project) => (
                     <ProjectButton
                         path={project.url}
                         name={project.frontmatter.title}
@@ -32,11 +51,53 @@ allProjects.map((a) => console.log(a));
     </main>
 </Layout>
 
+<script is:inline>
+    var $ = document.querySelector.bind(document);
+    var gameBtn = $(".selectable-option.game");
+    var portfolioBtn = $(".selectable-option.portfolio");
+
+    var gameGroup = $(".card-group.game");
+    var portfolioGroup = $(".card-group.portfolio");
+
+    gameBtn.addEventListener("click", (e) => {
+        gameBtn.classList.add("active");
+        portfolioBtn.classList.remove("active");
+
+        gameGroup.classList.remove("d-none");
+        portfolioGroup.classList.add("d-none");
+    });
+
+    portfolioBtn.addEventListener("click", (e) => {
+        portfolioBtn.classList.add("active");
+        gameBtn.classList.remove("active");
+
+        portfolioGroup.classList.remove("d-none");
+        gameGroup.classList.add("d-none");
+    });
+</script>
+
 <style>
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .selectable-option-group {
+        display: flex;
+        flex-direction: row;
+        column-gap: 25px;
+        margin-bottom: 150px;
+    }
+
     .card-group {
         display: flex;
         flex-wrap: wrap;
         column-gap: 25px; /* 자식 요소들 간의 가로 간격 설정 */
         justify-content: flex-start; /* 요소들을 왼쪽 정렬 */
+    }
+
+    .card-group.portfolio {
+        background-color: red;
     }
 </style>

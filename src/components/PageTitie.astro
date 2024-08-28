@@ -1,79 +1,89 @@
 ---
 interface Props {
-	title: string;
-	subtitle: string;
+    title: string;
+    subtitle: string;
 }
 
 const { title, subtitle } = Astro.props;
 ---
 
 <div class="page-title-container">
-	<div class="page-title">
-		<div class="titles">
-			<div class="title lotte-font">{title}</div>
-			<div class="sub-title lotte-font">{subtitle}</div>
-		</div>
-	</div>
+    <div class="page-title">
+        <div class="titles">
+            <div class="title lotte-font">{title}</div>
+            <div class="sub-title lotte-font">{subtitle}</div>
+        </div>
+    </div>
 </div>
 <style>
-	.page-title-container {
-		width: 100%;
-		overflow-x: hidden;
-	}
+    .page-title-container {
+        width: 100%;
+        overflow-x: hidden;
+    }
 
-	.page-title {
-		position: relative;
-		/* left: -237px; */
-		width: calc(100vw + 474px);
-		height: 500px;
+    .page-title {
+        position: relative;
+        /* left: -237px; */
+        width: calc(100vw + 474px);
+        height: 500px;
 
-		left: 50%;
-		transform: translate(-50%);
+        left: 50%;
+        transform: translate(-50%);
 
-		margin-bottom: 200px;
+        margin-bottom: 200px;
 
-		border-radius: 0 0 700px 700px;
-		background-color: var(--primary);
-		background-image: url(/PageTitlePattern.png);
-		background-position: center -100px;
-		background-repeat: repeat-x;
-		animation: moveBackgroundLeft 40s infinite linear;
-	}
+        border-radius: 0 0 700px 700px;
+        background-color: var(--primary);
+        background-image: url(/PageTitlePattern.png);
+        background-position: center -100px;
+        background-repeat: repeat-x;
+        animation: moveBackgroundLeft 40s infinite linear;
+    }
 
-	@keyframes moveBackgroundLeft {
-		0% {
-			background-position-x: 0;
-		}
-		100% {
-			background-position-x: -1853px; /* 배경을 왼쪽으로 100px 이동 */
-		}
-	}
+    @keyframes moveBackgroundLeft {
+        0% {
+            background-position-x: 0;
+        }
+        100% {
+            background-position-x: -1853px; /* 배경을 왼쪽으로 100px 이동 */
+        }
+    }
 
-	.lotte-font {
-		font-family: "LOTTERIACHAB" !important;
-	}
+    .lotte-font {
+        font-family: "LOTTERIACHAB" !important;
+    }
 
-	.title {
-		font-size: 150px;
-		margin-bottom: -50px;
-		-webkit-text-stroke-width: 1px;
-		-webkit-text-stroke-color: white;
-		text-shadow: #02143ECC 0 6px 10px;
-	}
-	
-	.sub-title {
-		font-size: 60px;
-		-webkit-text-stroke-width: 3px;
-  		-webkit-text-stroke-color: var(--primary);
-		text-shadow: #44444440 0 4px 4px;
-	}
+    .title {
+        font-size: 150px;
+        margin-bottom: -50px;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: white;
+        text-shadow: #02143ecc 0 6px 10px;
+    }
 
-	.titles {
-		color: white;
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		bottom: -25px;
-		text-align: center;
-	}
+    .sub-title {
+        font-size: 60px;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: var(--primary);
+        text-shadow: #44444440 0 4px 4px;
+    }
+
+    .titles {
+        color: white;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -25px;
+        text-align: center;
+    }
+
+    @media (width <= 1000px) {
+        .page-title {
+            height: 300px;
+        }
+        .title {
+            font-size: 90px;
+            margin-bottom: -30px;
+        }
+    }
 </style>
