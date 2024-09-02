@@ -20,6 +20,20 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      
+      - name: Clear Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            .astro
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Remove previous build files
+        run: rm -rf dist
+        
       - name: Install, build, and upload your site
         uses: withastro/action@v2
         # with:
