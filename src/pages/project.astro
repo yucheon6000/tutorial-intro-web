@@ -97,7 +97,9 @@ const allPortfolios = await Astro.glob("./project/*.md");
         justify-content: flex-start; /* 요소들을 왼쪽 정렬 */
     }
 
-    .card-group.portfolio {
-        background-color: red;
+    @media (width <= 650px) {
+        .selectable-option-group {
+            column-gap: 15px;
+        }
     }
 </style>

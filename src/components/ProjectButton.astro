@@ -37,4 +37,31 @@ const { name, image, path } = Astro.props;
         font-weight: 800;
         font-size: 20px;
     }
+
+    @media (width <= 900px) {
+        .project {
+            width: calc((100% - 50px) / 3);
+            min-width: calc((100% - 50px) / 3);
+            max-width: calc((100% - 50px) / 3);
+            flex: 1 1 calc((100% - 50px) / 3);
+        }
+    }
+    @media (width <= 650px) {
+        .project {
+            width: calc((100% - 25px) / 2);
+            min-width: calc((100% - 25px) / 2);
+            max-width: calc((100% - 25px) / 2);
+            flex: 1 1 calc((100% - 25px) / 2);
+        }
+    }
+
+    @media (width <= 400px) {
+        .project {
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            flex: 1 1 100%;
+            /* margin: 0 auto; */
+        }
+    }
 </style>
