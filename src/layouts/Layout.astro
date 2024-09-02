@@ -2,7 +2,7 @@
 import Footer from "../components/Footer.astro";
 
 interface Props {
-    title: string;
+    title?: string;
 }
 
 const { title } = Astro.props;
@@ -14,7 +14,7 @@ const { title } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/Logo.ico" />
         <meta name="generator" content={Astro.generator} />
 
         <link
@@ -28,7 +28,13 @@ const { title } = Astro.props;
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 
-        <title>{title}</title>
+        <title>
+            {
+                title
+                    ? title
+                    : "튜토리얼 | 국립공주대학교 게임디자인학과 졸업전시회 2024"
+            }
+        </title>
     </head>
     <body>
         <slot />
@@ -63,6 +69,7 @@ const { title } = Astro.props;
             white 60%
         );
         --primary: #0b3088;
+        --primary-dark: #19284c;
         --black: #424551;
     }
     html * {
@@ -103,6 +110,10 @@ const { title } = Astro.props;
     main {
         max-width: 1000px;
         margin: 0 auto;
+    }
+
+    .video {
+        border-radius: 10px;
     }
 
     @media (width <= 1000px) {

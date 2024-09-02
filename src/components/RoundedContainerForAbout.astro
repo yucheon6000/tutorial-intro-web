@@ -1,0 +1,52 @@
+---
+interface Props {
+    useBackgroundColor?: boolean;
+    rightRound?: boolean;
+    leftRound?: boolean;
+}
+
+const { useBackgroundColor, rightRound, leftRound } = Astro.props;
+---
+
+<div
+    class=`about-container 
+            ${useBackgroundColor ? "background" : ""} 
+            ${rightRound ? "right" : ""} 
+            ${leftRound ? "left" : ""} 
+            `
+>
+    <slot />
+</div>
+<style>
+    .about-container {
+        position: relative;
+        padding: 200px 0 300px 0;
+    }
+
+    .about-container::before {
+        content: " ";
+        position: absolute;
+        width: calc(100vw + 474px);
+        height: 100%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -100;
+        background-color: white;
+    }
+
+    .about-container.background::before {
+        background-color: var(--primary);
+        background-image: url(/page-title-pattern.png);
+        background-position: center -100px;
+        background-repeat: repeat-x;
+    }
+
+    .about-container.right::before {
+        border-top-right-radius: 400px;
+    }
+
+    .about-container.left::before {
+        border-top-left-radius: 400px;
+    }
+</style>

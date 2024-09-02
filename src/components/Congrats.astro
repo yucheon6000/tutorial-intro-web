@@ -20,10 +20,10 @@ const { name, message, role, active } = Astro.props;
 <style>
     .congrats {
         width: 100%;
+        padding: 30px 0;
         display: flex;
         flex-direction: row;
         column-gap: 55px;
-        background-color: var(--primary);
         color: white;
     }
 
@@ -40,9 +40,45 @@ const { name, message, role, active } = Astro.props;
         aspect-ratio: 1 / 1;
         border-radius: 100%;
         background-color: white;
+        margin-bottom: 50px;
+    }
+
+    .role {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .name {
+        font-size: 24px;
+        font-weight: 800;
     }
 
     .message {
         flex: 1 1 60%;
+    }
+
+    @media (width <= 1000px) {
+        .congrats {
+            flex-direction: column;
+        }
+
+        .image {
+            width: max(200px, calc(100% - 400px));
+            aspect-ratio: 1 / 1;
+        }
+
+        .role {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .name {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .message {
+            margin-bottom: 30px;
+        }
     }
 </style>
