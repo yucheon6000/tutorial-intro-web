@@ -3,6 +3,7 @@ import BlackSmallTitle from "../components/BlackSmallTitle.astro";
 import Card from "../components/Card.astro";
 import Menu from "../components/Menu.astro";
 import PageTitie from "../components/PageTitie.astro";
+import PageTitieForProject from "../components/PageTitieForProject.astro";
 import Profile from "../components/Profile.astro";
 import Layout from "./Layout.astro";
 
@@ -11,14 +12,19 @@ const { frontmatter } = Astro.props;
 
 <Layout title={frontmatter.title}>
     <Menu />
-    <PageTitie title={frontmatter.title} subtitle={frontmatter.team} />
+    <PageTitieForProject title={frontmatter.title} team={frontmatter.team} />
 
     <main>
         <BlackSmallTitle>게임 소개</BlackSmallTitle>
 
         <div class="poster-and-description end-block">
-            <img class="poster" src={frontmatter.posterImg} />
-            <slot class="description" />
+            <img
+                class="poster"
+                src=`/2024/image/posters/${frontmatter.title}.png`
+            />
+            <div class="description">
+                <slot />
+            </div>
         </div>
 
         <BlackSmallTitle>게임 플레이 영상</BlackSmallTitle>
@@ -34,7 +40,7 @@ const { frontmatter } = Astro.props;
             allowfullscreen></iframe>
 
         <BlackSmallTitle>팀원</BlackSmallTitle>
-        <div class="profile-group">
+        <div class="profile-group end-block">
             {
                 frontmatter.profileNames.map((name: string, idx: number) => (
                     <Profile

@@ -30,8 +30,7 @@ const allPortfolios = await Astro.glob("./project/*.md");
                 allGames.map((project) => (
                     <ProjectButton
                         path={project.url}
-                        name={project.frontmatter.title}
-                        image={project.frontmatter.posterImg}
+                        title={project.frontmatter.title}
                     />
                 ))
             }
@@ -42,8 +41,7 @@ const allPortfolios = await Astro.glob("./project/*.md");
                 allPortfolios.map((project) => (
                     <ProjectButton
                         path={project.url}
-                        name={project.frontmatter.title}
-                        image={project.frontmatter.posterImg}
+                        title={project.frontmatter.title}
                     />
                 ))
             }

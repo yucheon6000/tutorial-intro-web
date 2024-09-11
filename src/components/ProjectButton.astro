@@ -1,17 +1,17 @@
 ---
 interface Props {
-    name: string;
-    image: string;
+    title: string;
     path?: string;
 }
 
-const { name, image, path } = Astro.props;
+const { title, path } = Astro.props;
 ---
 
 <a class="project" href={path}>
-    <div class="image"></div>
-    <div class="name">{name}</div>
+    <img src=`/2024/image/posters/${title}.png` class="image" />
+    <div class="name">{title}</div>
 </a>
+
 <style>
     .project {
         width: calc((100% - 75px) / 4);

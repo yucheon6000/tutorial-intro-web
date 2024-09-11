@@ -13,7 +13,7 @@ const { title } = Astro.props;
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/ico" href="/favicon.ico" />
+        <link rel="icon" type="image/ico" href="/2024/image/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
         <meta name="robots" content="index, follow" />
 
@@ -37,7 +37,10 @@ const { title } = Astro.props;
             property="og:title"
             content="국립공주대학교 게임디자인학과 졸업전시회 2024"
         />
-        <meta property="og:image" content="http://knugame.kr/thumb.png" />
+        <meta
+            property="og:image"
+            content="http://knugame.kr/2024/image/thumb.png"
+        />
         <meta
             property="og:description"
             content="졸업전시회가 G-Star에서 진행됩니다. 장소: 부산 벡스코, 일시: 2024년 11월 14~17일(목~일)"
@@ -60,7 +63,10 @@ const { title } = Astro.props;
             name="twitter:description"
             content="졸업전시회가 G-Star에서 진행됩니다. 장소: 부산 벡스코, 일시: 2024년 11월 14~17일(목~일)"
         />
-        <meta name="twitter:image" content="http://knugame.kr/thumb.png" />
+        <meta
+            name="twitter:image"
+            content="http://knugame.kr/2024/image/thumb.png"
+        />
 
         <!-- Bootstrap -->
         <link
@@ -110,7 +116,7 @@ const { title } = Astro.props;
         --primary-dark: #19284c;
         --black: #424551;
     }
-    html * {
+    html * :not(.lotte-font) {
         font-family: "Pretendard-Regular", system-ui, sans-serif !important;
     }
 

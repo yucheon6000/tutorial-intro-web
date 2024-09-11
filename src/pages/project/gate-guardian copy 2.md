@@ -3,7 +3,7 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: "Gate Guardian"
 team: "INCA"
 youtube: jfKfPfyJRdk
-posterImg: "/posters/game1.jpg"
+posterImg: "/2024/image/posters/game1.jpg"
 profileNames:
   [
     "박유천",

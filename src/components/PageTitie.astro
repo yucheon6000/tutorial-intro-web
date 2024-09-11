@@ -10,11 +10,83 @@ const { title, subtitle } = Astro.props;
 <div class="page-title-container">
     <div class="page-title">
         <div class="titles">
-            <div class="title lotte-font">{title}</div>
+            <div class="title lotte-font wave-text">{title}</div>
             <div class="sub-title lotte-font">{subtitle}</div>
         </div>
     </div>
 </div>
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+        const waveText = document.querySelector(".wave-text");
+        if (!waveText) return;
+
+        const text = waveText.textContent.trim();
+        waveText.innerHTML = "";
+
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement("span");
+            span.textContent = text[i];
+            span.classList.add("lotte-font");
+            waveText.appendChild(span);
+        }
+
+        function startAnimation() {
+            const spans = waveText.querySelectorAll("span");
+            spans.forEach((span, index) => {
+                // 애니메이션 재설정
+                span.style.animation = "none";
+                span.offsetHeight; // Trigger reflow
+                span.style.animation = `wave 1s ease-in-out forwards`;
+                span.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // 1초 후에 애니메이션 재시작
+            setTimeout(startAnimation, 3000);
+        }
+
+        function handleHover(event) {
+            const target = event.target;
+            if (target.tagName === "SPAN") {
+                const index = Array.from(
+                    waveText.querySelectorAll("span"),
+                ).indexOf(target);
+                waveText.querySelectorAll("span").forEach((span, i) => {
+                    const distance = Math.abs(i - index);
+                    span.classList.add("active");
+                    span.style.animationDelay = `${distance * 0.1}s`;
+                });
+            }
+        }
+
+        function handleTouch(event) {
+            event.preventDefault(); // 모바일에서 터치 이벤트 기본 동작 방지
+            const touch = event.touches[0];
+            const element = document.elementFromPoint(
+                touch.clientX,
+                touch.clientY,
+            );
+            if (element && element.tagName === "SPAN") {
+                const index = Array.from(
+                    waveText.querySelectorAll("span"),
+                ).indexOf(element);
+                waveText.querySelectorAll("span").forEach((span, i) => {
+                    const distance = Math.abs(i - index);
+                    span.classList.add("active");
+                    span.style.animationDelay = `${distance * 0.1}s`;
+                });
+            }
+        }
+
+        waveText.addEventListener("mouseover", handleHover);
+        waveText.addEventListener("mouseout", () => {
+            waveText
+                .querySelectorAll("span")
+                .forEach((span) => span.classList.remove("active")); // 마우스가 나갈 때 애니메이션 초기화
+        });
+
+        waveText.addEventListener("touchstart", handleTouch);
+    });
+</script>
 <style>
     .page-title-container {
         width: 100%;
@@ -34,7 +106,7 @@ const { title, subtitle } = Astro.props;
 
         border-radius: 0 0 700px 700px;
         background-color: var(--primary);
-        background-image: url(/page-title-pattern.png);
+        background-image: url(/2024/image/page-title-pattern.png);
         background-position: center -100px;
         background-repeat: repeat-x;
         animation: moveBackgroundLeft 40s infinite linear;
@@ -75,5 +147,33 @@ const { title, subtitle } = Astro.props;
         transform: translateX(-50%);
         bottom: -25px;
         text-align: center;
+    }
+
+    .wave-text {
+        display: flex;
+    }
+
+    @keyframes wave {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<style is:inline>
+    .wave-text span {
+        display: inline-block;
+        animation: wave 1s ease-in-out;
+        animation-fill-mode: forwards; /* 애니메이션 후 마지막 상태 유지 */
+    }
+    .wave-text span.active {
+        animation: waveHorizontal 0.6s ease-in-out;
+        animation-fill-mode: forwards; /* 애니메이션 후 마지막 상태 유지 */
     }
 </style>
