@@ -13,12 +13,9 @@ const allPortfolios = await Astro.glob("./project/*.md");
 
 <Layout>
     <Menu />
-    <PageTitie title="PROJECT" subtitle="프로젝트" />
+    <PageTitie title="PROJECTS" subtitle="프로젝트" />
 
     <main>
-        <!-- <YellowSmallTitle>About Exhibition</YellowSmallTitle>
-        <BlackSmallTitle>전시 소개</BlackSmallTitle> -->
-
         <div class="selectable-option-group">
             <SelectableOption active className="game">GAMES</SelectableOption>
             <SelectableOption className="portfolio">PORTFOLIOS</SelectableOption

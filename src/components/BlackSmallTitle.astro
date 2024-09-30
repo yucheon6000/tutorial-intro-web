@@ -13,11 +13,11 @@ const { textAline, color, bottomMargin } = Astro.props;
     define:vars={{
         textAline,
         color: color || "var(--black)",
-        bottomMargin: (bottomMargin || 100) + "px",
+        bottomMargin: (bottomMargin != null ? bottomMargin : 6.25) + "rem",
     }}
 >
     p {
-        font-size: 32px;
+        font-size: 2rem;
         font-weight: 700;
         color: var(--color);
         margin-bottom: var(--bottomMargin);

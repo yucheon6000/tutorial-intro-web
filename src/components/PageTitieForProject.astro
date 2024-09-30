@@ -20,6 +20,7 @@ const { title, team } = Astro.props;
 </div>
 
 <script is:inline>
+    return;
     document.addEventListener("DOMContentLoaded", function () {
         const waveText = document.querySelector(".wave-text");
         if (!waveText) return;
@@ -34,48 +35,6 @@ const { title, team } = Astro.props;
             // span.classList.add("lotte-font");
             waveText.appendChild(span);
         }
-
-        // function handleHover(event) {
-        //     const target = event.target;
-        //     if (target.tagName === "SPAN") {
-        //         const index = Array.from(
-        //             waveText.querySelectorAll("span"),
-        //         ).indexOf(target);
-        //         waveText.querySelectorAll("span").forEach((span, i) => {
-        //             const distance = Math.abs(i - index);
-        //             span.classList.add("active");
-        //             span.style.animationDelay = `${distance * 0.1}s`;
-        //         });
-        //     }
-        // }
-
-        // function handleTouch(event) {
-        //     event.preventDefault(); // 모바일에서 터치 이벤트 기본 동작 방지
-        //     const touch = event.touches[0];
-        //     const element = document.elementFromPoint(
-        //         touch.clientX,
-        //         touch.clientY,
-        //     );
-        //     if (element && element.tagName === "SPAN") {
-        //         const index = Array.from(
-        //             waveText.querySelectorAll("span"),
-        //         ).indexOf(element);
-        //         waveText.querySelectorAll("span").forEach((span, i) => {
-        //             const distance = Math.abs(i - index);
-        //             span.classList.add("active");
-        //             span.style.animationDelay = `${distance * 0.1}s`;
-        //         });
-        //     }
-        // }
-
-        // waveText.addEventListener("mouseover", handleHover);
-        // waveText.addEventListener("mouseout", () => {
-        //     waveText
-        //         .querySelectorAll("span")
-        //         .forEach((span) => span.classList.remove("active")); // 마우스가 나갈 때 애니메이션 초기화
-        // });
-
-        // waveText.addEventListener("touchstart", handleTouch);
     });
 </script>
 

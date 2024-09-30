@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import PageTitie from "../components/PageTitie.astro";
+import Menu from "../components/Menu.astro";
+import YellowSmallTitle from "../components/YellowSmallTitle.astro";
+import BlackSmallTitle from "../components/BlackSmallTitle.astro";
+import ProjectButton from "../components/ProjectButton.astro";
+import SelectableOption from "../components/SelectableOption.astro";
+const allGames = await Astro.glob("./project/*.md");
+const allPortfolios = await Astro.glob("./project/*.md");
+---
+
+<Layout>
+    <Menu />
+    <iframe
+        src="https://padlet.com/embed/3bc33wmrs16x87tk"
+        frameborder="0"
+        allow="camera;microphone;geolocation"
+        style="width:100%;display:block;padding:0;"></iframe>
+</Layout>
+
+<style>
+    body {
+        overflow-y: hidden;
+    }
+
+    iframe {
+        height: calc(100dvh - 61px);
+        min-height: 600px;
+        margin-top: 61px;
+    }
+</style>

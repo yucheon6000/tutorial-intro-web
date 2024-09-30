@@ -7,9 +7,28 @@ import BlackSmallTitle from "../components/BlackSmallTitle.astro";
 import DefaultText from "../components/DefaultText.astro";
 ---
 
+<script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <Layout>
     <Menu />
-    <PageTitie title="TUTORIAL" subtitle="튜토리얼" />
+    <main>
+        <div class="title">
+            국립공주대학교 게임디자인학과<br />
+            <strong>제20화 졸업전시회</strong>
+        </div>
+
+        <div class="main-logo-container">
+            <img class="main-logo" src="/2024/image/main-page-logo.png" />
+        </div>
+    </main>
+
+    <div class="ribbon"></div>
+
     <main>
         <div class="section">
             <YellowSmallTitle textAline="center">Welcome</YellowSmallTitle>
@@ -19,7 +38,7 @@ import DefaultText from "../components/DefaultText.astro";
 
             <span
                 class="text-center"
-                style="font-weight: 500 !important; font-size: 20px !important;"
+                style="font-weight: 500 !important; font-size: 1.25rem !important;"
             >
                 <DefaultText>
                     학부생을 마무리한 학생들의 행보를 축하하고 응원해 주세요.
@@ -39,17 +58,28 @@ import DefaultText from "../components/DefaultText.astro";
             </span>
         </div>
 
-        <div class="section venue-section">
+        <div class="section venue-section color-white">
             <YellowSmallTitle textAline="center">Venue</YellowSmallTitle>
             <BlackSmallTitle textAline="center" color="white">
                 게임디자인학과의 게임들을<br />직접 만나봐요
             </BlackSmallTitle>
 
+            <div class="venue-info-container">
+                <div class="venue-info">
+                    <ion-icon name="map"></ion-icon>
+                    BEXCO (부산 해운대구 APEC로 55)
+                </div>
+                <div class="venue-info">
+                    <ion-icon name="today"></ion-icon>
+                    2024년 11월 14 - 17일 (목 - 일), 10:00 - 18:00
+                </div>
+            </div>
+
             <iframe
                 class="map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.51654707913!2d129.1333663756948!3d35.16867602275704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356892bf02a5dfe1%3A0xb36570e65bbad549!2z67Kh7Iqk7L2U!5e0!3m2!1sko!2skr!4v1724409214579!5m2!1sko!2skr"
                 width="600"
-                height="450"
+                height="400"
                 style="border:0;"
                 allowfullscreen=""
                 loading="lazy"
@@ -61,16 +91,201 @@ import DefaultText from "../components/DefaultText.astro";
             <BlackSmallTitle textAline="center">부스 배치도</BlackSmallTitle>
         </div>
     </main>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="swiper mySwiper2">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="swiper mySwiper3">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
 </Layout>
+
+<!-- Initialize Swiper -->
+<script
+    is:inline
+    src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script is:inline>
+    new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        // freeMode: true,
+        loop: true,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        speed: 10000, // 슬라이드 전환 속도 (밀리초, 2000ms = 2초)
+        // loop: true, // 마지막 슬라이드 이후 처음으로 반복
+    });
+
+    new Swiper(".mySwiper2", {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        // freeMode: true,
+        loop: true,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+            reverseDirection: true,
+        },
+        speed: 10000, // 슬라이드 전환 속도 (밀리초, 2000ms = 2초)
+        // loop: true, // 마지막 슬라이드 이후 처음으로 반복
+    });
+
+    new Swiper(".mySwiper3", {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        // freeMode: true,
+        loop: true,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        speed: 10000, // 슬라이드 전환 속도 (밀리초, 2000ms = 2초)
+        // loop: true, // 마지막 슬라이드 이후 처음으로 반복
+    });
+</script>
+
+<!-- Swiper -->
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
 <style>
+    .swiper {
+        width: 100%;
+        height: 12.5rem;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 1.125rem;
+        background: var(--primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+<style is:inline>
+    .swiper {
+        margin-bottom: 0.625rem;
+    }
+    .swiper,
+    .swiper-wrapper {
+        height: auto !important;
+    }
+
+    .swiper-slide {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .swiper-wrapper {
+        transition: transform 1s linear; /* linear 애니메이션 커브 설정 */
+    }
+</style>
+
+<style>
+    .title {
+        margin-top: 6.25rem;
+        margin-bottom: 3.125rem;
+    }
+
+    .title strong {
+        font-weight: 900;
+    }
+
+    /* Main Logo */
+    .main-logo-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1168 / 446;
+        margin-bottom: 11.25rem;
+    }
+    .main-logo {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        will-change: width;
+        animation: mainLogoScale 10s infinite ease-out;
+    }
+
+    @keyframes mainLogoScale {
+        40% {
+            width: 70%;
+        }
+
+        0%,
+        50%,
+        100% {
+            width: 100%;
+        }
+
+        42% {
+            width: 110%;
+        }
+    }
+
+    /* Ribbon */
+    .ribbon {
+        width: 100%;
+        height: 2.5rem;
+        background-image: url(/2024/image/main-page-ribbon.png);
+        background-repeat: repeat-x;
+        background-size: auto 2.5rem;
+        animation: moveBackgroundLeft 30s infinite linear;
+    }
+
+    @keyframes moveBackgroundLeft {
+        0% {
+            background-position-x: 0;
+        }
+        100% {
+            background-position-x: -43.393rem; /* 배경을 왼쪽으로 100px 이동 */
+        }
+    }
+
     .section {
-        padding: 200px 0;
+        padding: 12.5rem 0;
     }
 
     .ticket {
         width: 100%;
         height: auto;
-        margin: 100px 0;
+        margin: 6.25rem 0;
     }
 
     .venue-section {
@@ -80,15 +295,24 @@ import DefaultText from "../components/DefaultText.astro";
     .venue-section::before {
         content: " ";
         position: absolute;
-        left: -100%;
-        right: -100%;
+        left: -100vw;
+        right: -100vw;
         top: 0;
         bottom: 0;
         z-index: -10;
         background-color: var(--primary);
     }
 
+    .venue-info-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 6.25rem;
+        gap: 2.5rem;
+    }
+
     iframe {
-        border-radius: 10px;
+        border-radius: 0.625rem;
     }
 </style>

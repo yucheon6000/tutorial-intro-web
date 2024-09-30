@@ -4,7 +4,7 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: Gate Guardian
 team: INCA
 
-youtube: 필요없음
+youtube: 7keLzB5YYIY
 
 profileNames: [이름 1, 이름 2, 이름 3, 이름 4, 이름 5]
 profileRoles: [역할 1, 역할 2, 역할 3, 역할 4, 역할 5]

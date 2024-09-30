@@ -1,62 +1,92 @@
 ---
 interface Props {
-	name: string;
-	role: string;
-	email: string;
+    name: string;
+    role: string;
+    email: string;
 }
 
 const { name, role, email } = Astro.props;
 ---
 
 <div class="profile">
-	<div class="image"></div>
-	<div class="name-and-role">
-		<div class="name">{name}</div>
-		<div class="role">{role}</div>
-	</div>
-	<div class="email">{email}</div>
+    <div class="image">
+        <img src=`/2024/image/profile-images/${name}.png` />
+    </div>
+    <div class="name-and-role">
+        <div class="name">{name}</div>
+        <div class="role">{role}</div>
+    </div>
+    <div class="email">{email}</div>
 </div>
 <style>
-	.profile {
-		min-width: 169px; /* 최대 너비를 동일하게 설정 */
-		max-width: calc((100% / 5) - 16px); /* 최대 너비를 동일하게 설정 */
-		flex: 1 1 calc((100% / 5) - 16px); /* 5개 기준으로 요소 크기 설정 */
-		margin-bottom: 16px; /* 아래쪽 여백 추가 */
-		box-sizing: border-box;
-	}
-	
-	.image {
-		width: 100%;
-		border-radius: 8px;
-		height: auto;
-		aspect-ratio: 3 / 4;
-		background-color: var(--primary);
-		margin-bottom: 20px;
-	}
+    .profile {
+        width: calc((100% - 4rem) / 5);
+        min-width: calc((100% - 4rem) / 5);
+        max-width: calc((100% - 4rem) / 5);
+        flex: 1 1 calc((100% - 4rem) / 5);
+        /* margin-bottom: 16px; 아래쪽 여백 추가 */
+        box-sizing: border-box;
+    }
 
-	.name-and-role {
-		display: flex;
-		flex-direction: row;
-		column-gap: 8px;
-		margin-bottom: 8px;
-	}
+    @media (width <= 900px) {
+        .profile {
+            width: calc((100% - 3rem) / 4);
+            min-width: calc((100% - 3rem) / 4);
+            max-width: calc((100% - 3rem) / 4);
+            flex: 1 1 calc((100% - 3rem) / 4);
+        }
+    }
+    @media (width <= 650px) {
+        .profile {
+            width: calc((100% - 2rem) / 3);
+            min-width: calc((100% - 2rem) / 3);
+            max-width: calc((100% - 2rem) / 3);
+            flex: 1 1 calc((100% - 2rem) / 3);
+        }
+    }
 
-	.name {
-		font-weight: 800;
-		font-size: 18px;
-	}
+    @media (width <= 400px) {
+        .profile {
+            width: calc((100% - 1rem) / 2);
+            min-width: calc((100% - 1rem) / 2);
+            max-width: calc((100% - 1rem) / 2);
+            flex: 1 1 calc((100% - 1rem) / 2);
+            /* margin: 0 auto; */
+        }
+    }
 
-	.role {
-		font-weight: 400;
-		font-size: 18px;
-		color: #95969C;
-	}
+    .image {
+        width: 100%;
+        border-radius: 0.5rem;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        background-color: var(--primary);
+        margin-bottom: 1.25rem;
+    }
 
-	.email {
-		font-weight: 400;
-		font-size: 14px;
-		color: #B5B9C6;
-		text-wrap: wrap;
-		overflow-wrap: anywhere;
-	}
+    .name-and-role {
+        display: flex;
+        flex-direction: row;
+        column-gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .name {
+        font-weight: 800;
+        font-size: 1.125rem;
+    }
+
+    .role {
+        font-weight: 400;
+        font-size: 1.125rem;
+        color: #95969c;
+    }
+
+    .email {
+        font-weight: 400;
+        font-size: 0.875rem;
+        color: #b5b9c6;
+        text-wrap: wrap;
+        overflow-wrap: anywhere;
+    }
 </style>

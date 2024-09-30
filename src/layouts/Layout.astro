@@ -79,6 +79,13 @@ const { title } = Astro.props;
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+
+        <!-- Sharethis -->
+        <script
+            is:inline
+            type="text/javascript"
+            src="https://platform-api.sharethis.com/js/sharethis.js#property=66f07354d219590019f5eacf&product=inline-reaction-buttons"
+            async="async"></script>
     </head>
     <body>
         <slot />
@@ -115,6 +122,7 @@ const { title } = Astro.props;
         --primary: #0b3088;
         --primary-dark: #19284c;
         --black: #424551;
+        font-size: 16px;
     }
     html * :not(.lotte-font) {
         font-family: "Pretendard-Regular", system-ui, sans-serif !important;
@@ -148,7 +156,7 @@ const { title } = Astro.props;
     }
 
     .end-block {
-        margin-bottom: 200px;
+        margin-bottom: 9.375rem;
     }
 
     main {
@@ -176,5 +184,9 @@ const { title } = Astro.props;
         width: 100%;
         height: auto;
         aspect-ratio: 560/315;
+    }
+
+    .color-white {
+        color: white;
     }
 </style>
