@@ -5,6 +5,13 @@ import Menu from "../components/Menu.astro";
 import YellowSmallTitle from "../components/YellowSmallTitle.astro";
 import BlackSmallTitle from "../components/BlackSmallTitle.astro";
 import DefaultText from "../components/DefaultText.astro";
+
+const allGames = await Astro.glob("./project/*.md");
+allGames.sort((game1, game2) =>
+    game1.frontmatter.title.localeCompare(game2.frontmatter.title),
+);
+
+const allGames1 = allGames.slice(0, 4);
 ---
 
 <script
@@ -92,33 +99,29 @@ import DefaultText from "../components/DefaultText.astro";
         </div>
     </main>
 
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <div class="swiper mySwiper2">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <div class="swiper mySwiper3">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
+    {
+        [0, 1, 2].map((idx) => (
+            <div class={"swiper " + "mySwiper" + idx}>
+                <div class="swiper-wrapper">
+                    {allGames.slice(idx * 4, (idx + 1) * 4).map((project) => (
+                        <div class="swiper-slide">
+                            <a href={project.url}>
+                                <img
+                                    src={
+                                        "/2024/image/thumbnails/" +
+                                        project.frontmatter.fileName +
+                                        ".png"
+                                    }
+                                    alt={project.frontmatter.title}
+                                />
+                            </a>
+                        </div>
+                    ))}
+                </div>
+                <div class="swiper-pagination" />
+            </div>
+        ))
+    }
 </Layout>
 
 <!-- Initialize Swiper -->
@@ -126,7 +129,7 @@ import DefaultText from "../components/DefaultText.astro";
     is:inline
     src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script is:inline>
-    new Swiper(".mySwiper", {
+    new Swiper(".mySwiper0", {
         slidesPerView: 3,
         spaceBetween: 10,
         // freeMode: true,
@@ -139,7 +142,7 @@ import DefaultText from "../components/DefaultText.astro";
         // loop: true, // 마지막 슬라이드 이후 처음으로 반복
     });
 
-    new Swiper(".mySwiper2", {
+    new Swiper(".mySwiper1", {
         slidesPerView: 3,
         spaceBetween: 10,
         // freeMode: true,
@@ -153,7 +156,7 @@ import DefaultText from "../components/DefaultText.astro";
         // loop: true, // 마지막 슬라이드 이후 처음으로 반복
     });
 
-    new Swiper(".mySwiper3", {
+    new Swiper(".mySwiper2", {
         slidesPerView: 3,
         spaceBetween: 10,
         // freeMode: true,
@@ -180,6 +183,7 @@ import DefaultText from "../components/DefaultText.astro";
     }
 
     .swiper-slide {
+        position: relative;
         text-align: center;
         font-size: 1.125rem;
         background: var(--primary);
@@ -188,6 +192,7 @@ import DefaultText from "../components/DefaultText.astro";
         align-items: center;
     }
 
+    .swiper-slide a,
     .swiper-slide img {
         display: block;
         width: 100%;

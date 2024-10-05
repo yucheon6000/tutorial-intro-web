@@ -21,7 +21,11 @@ const { frontmatter } = Astro.props;
     />
 
     <Menu />
-    <PageTitieForProject title={frontmatter.title} team={frontmatter.team} />
+    <PageTitieForProject
+        title={frontmatter.title}
+        team={frontmatter.team}
+        fileName={frontmatter.fileName}
+    />
 
     <main>
         <BlackSmallTitle bottomMargin={1.875}>게임 소개</BlackSmallTitle>
@@ -29,7 +33,7 @@ const { frontmatter } = Astro.props;
         <div class="poster-and-description end-block">
             <img
                 class="poster"
-                src=`/2024/image/posters/${frontmatter.title}.png`
+                src=`/2024/image/posters/${frontmatter.fileName}.png`
             />
             <div class="description">
                 <slot />
@@ -83,6 +87,7 @@ const { frontmatter } = Astro.props;
                         name={name}
                         role={frontmatter.profileRoles[idx]}
                         email={frontmatter.profileEmails[idx]}
+                        page={frontmatter.profilePages[idx]}
                     />
                 ))
             }
@@ -94,6 +99,7 @@ const { frontmatter } = Astro.props;
     <!-- ShareThis END -->
 
     <div id="game-title" class="d-none">{frontmatter.title}</div>
+    <div id="file-name" class="d-none">{frontmatter.fileName}</div>
 </Layout>
 
 <style is:inline>
@@ -168,7 +174,7 @@ const { frontmatter } = Astro.props;
 
 <!-- Initialize Swiper -->
 <script is:inline>
-    let gameTitle = document.querySelector("#game-title").textContent;
+    let fileName = document.querySelector("#file-name").textContent;
 
     async function loadImages() {
         const images = [];
@@ -176,7 +182,7 @@ const { frontmatter } = Astro.props;
 
         while (true) {
             try {
-                let path = `/2024/image/screenshots/${gameTitle}_${index}.png`;
+                let path = `/2024/image/screenshots/${fileName}_${index}.png`;
 
                 // 이미지가 있는지 체크
                 const response = await fetch(path);

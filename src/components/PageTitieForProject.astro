@@ -2,14 +2,15 @@
 interface Props {
     title: string;
     team: string;
+    fileName: string;
 }
 
-const { title, team } = Astro.props;
+const { title, team, fileName } = Astro.props;
 ---
 
 <div
     class="page-title-container end-block"
-    style=`background-image: url('/2024/image/backgrounds/${title}.png')`
+    style=`background-image: url('/2024/image/backgrounds/${fileName}.png')`
 >
     <main>
         <div class="titles">

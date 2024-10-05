@@ -3,23 +3,57 @@ interface Props {
     name: string;
     role: string;
     email: string;
+    page: string;
 }
 
-const { name, role, email } = Astro.props;
+const { name, role, email, page } = Astro.props;
 ---
+
+<script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 <div class="profile">
     <div class="image">
-        <img src=`/2024/image/profile-images/${name}.png` />
+        <a href=`${page ? page : "mailto:"+ email}` target="_blank">
+            {
+                page ? (
+                    <div>
+                        <>
+                            <ion-icon name="open" />
+                            <br />
+                        </>
+                        {name}의<br />
+                        홈페이지로 이동
+                    </div>
+                ) : (
+                    <div>
+                        <>
+                            <ion-icon name="send" />
+                            <br />
+                        </>
+                        {name}에게
+                        <br />
+                        이메일 전송
+                    </div>
+                )
+            }
+        </a>
+        <img width="100%" src=`/2024/image/profile-images/${name}.jpg` />
     </div>
     <div class="name-and-role">
         <div class="name">{name}</div>
         <div class="role">{role}</div>
+        <div class="email">{email}</div>
     </div>
-    <div class="email">{email}</div>
 </div>
 <style>
     .profile {
+        position: relative;
         width: calc((100% - 4rem) / 5);
         min-width: calc((100% - 4rem) / 5);
         max-width: calc((100% - 4rem) / 5);
@@ -44,49 +78,79 @@ const { name, role, email } = Astro.props;
             flex: 1 1 calc((100% - 2rem) / 3);
         }
     }
-
     @media (width <= 400px) {
         .profile {
             width: calc((100% - 1rem) / 2);
             min-width: calc((100% - 1rem) / 2);
             max-width: calc((100% - 1rem) / 2);
             flex: 1 1 calc((100% - 1rem) / 2);
-            /* margin: 0 auto; */
         }
     }
 
-    .image {
+    .profile a {
+        position: absolute;
+        display: block;
         width: 100%;
+        height: 100%;
         border-radius: 0.5rem;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        color: #ffffff00;
+    }
+
+    .profile a:hover {
+        color: white;
+        background-color: #00000098;
+    }
+
+    .profile a div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 0.8rem;
+        text-wrap: nowrap;
+    }
+
+    .image {
+        position: relative;
+        width: 100%;
         height: auto;
         aspect-ratio: 4 / 5;
+        border-radius: 0.5rem;
+        overflow: hidden;
         background-color: var(--primary);
         margin-bottom: 1.25rem;
     }
 
     .name-and-role {
         display: flex;
-        flex-direction: row;
-        column-gap: 0.5rem;
-        margin-bottom: 0.5rem;
+        flex-direction: column;
+        row-gap: 0rem;
     }
 
     .name {
         font-weight: 800;
         font-size: 1.125rem;
+        text-wrap: nowrap;
+        /* margin-bottom: 0.2rem; */
+    }
+
+    .role,
+    .email {
+        font-weight: 400;
+        font-size: 0.8rem;
+        text-wrap: wrap;
+        overflow-wrap: anywhere;
     }
 
     .role {
-        font-weight: 400;
-        font-size: 1.125rem;
         color: #95969c;
+        margin-bottom: -0.2rem;
     }
 
     .email {
-        font-weight: 400;
-        font-size: 0.875rem;
         color: #b5b9c6;
-        text-wrap: wrap;
-        overflow-wrap: anywhere;
     }
 </style>

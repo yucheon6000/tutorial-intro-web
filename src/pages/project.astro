@@ -8,6 +8,9 @@ import BlackSmallTitle from "../components/BlackSmallTitle.astro";
 import ProjectButton from "../components/ProjectButton.astro";
 import SelectableOption from "../components/SelectableOption.astro";
 const allGames = await Astro.glob("./project/*.md");
+allGames.sort((game1, game2) =>
+    game1.frontmatter.title.localeCompare(game2.frontmatter.title),
+);
 const allPortfolios = await Astro.glob("./project/*.md");
 ---
 
@@ -27,6 +30,7 @@ const allPortfolios = await Astro.glob("./project/*.md");
                 allGames.map((project) => (
                     <ProjectButton
                         path={project.url}
+                        fileName={project.frontmatter.fileName}
                         title={project.frontmatter.title}
                     />
                 ))
@@ -35,12 +39,16 @@ const allPortfolios = await Astro.glob("./project/*.md");
 
         <div class="card-group portfolio d-none">
             {
-                allPortfolios.map((project) => (
-                    <ProjectButton
-                        path={project.url}
-                        title={project.frontmatter.title}
-                    />
-                ))
+                allPortfolios.map(
+                    (project) =>
+                        project.frontmatter.title != "게임 이름" && (
+                            <ProjectButton
+                                path={project.url}
+                                fileName={project.frontmatter.fileName}
+                                title={project.frontmatter.title}
+                            />
+                        ),
+                )
             }
         </div>
     </main>

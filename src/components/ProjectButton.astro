@@ -1,14 +1,15 @@
 ---
 interface Props {
     title: string;
+    fileName: string;
     path?: string;
 }
 
-const { title, path } = Astro.props;
+const { title, fileName, path } = Astro.props;
 ---
 
 <a class="project" href={path}>
-    <img src=`/2024/image/posters/${title}.png` class="image" />
+    <img src=`/2024/image/posters/${fileName}.png` class="image" />
     <div class="name">{title}</div>
 </a>
 
@@ -28,7 +29,7 @@ const { title, path } = Astro.props;
         width: 100%;
         border-radius: 8px;
         height: auto;
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 1 / 1.414;
         background-color: var(--primary);
         margin-bottom: 20px;
     }
