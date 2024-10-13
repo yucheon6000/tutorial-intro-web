@@ -17,7 +17,7 @@ const { name, role, email, page } = Astro.props;
     nomodule
     src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-<div class="profile">
+<div class="profile block-drag">
     <div class="image">
         <a href=`${page ? page : "mailto:"+ email}` target="_blank">
             {
@@ -131,7 +131,7 @@ const { name, role, email, page } = Astro.props;
     }
 
     .name {
-        font-weight: 800;
+        font-weight: 600;
         font-size: 1.125rem;
         text-wrap: nowrap;
         /* margin-bottom: 0.2rem; */

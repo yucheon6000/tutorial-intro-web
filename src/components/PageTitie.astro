@@ -98,15 +98,15 @@ const { title, subtitle } = Astro.props;
     .page-title {
         position: relative;
         /* left: -237px; */
-        width: calc(100vw + 474px);
-        height: 500px;
+        width: calc(100vw + 29.625rem);
+        height: 31.25rem;
 
         left: 50%;
         transform: translate(-50%);
 
-        margin-bottom: 200px;
+        margin-bottom: 6.25rem;
 
-        border-radius: 0 0 700px 700px;
+        border-radius: 0 0 43.75rem 43.75rem;
         background-color: var(--primary);
         background-image: url(/2024/image/page-title-pattern.png);
         background-position: center -100px;
@@ -128,7 +128,7 @@ const { title, subtitle } = Astro.props;
     }
 
     .title {
-        font-size: min(17vw, 150px);
+        font-size: min(16vw, 150px);
         margin-bottom: max(-7vw, -44px);
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: white;
@@ -164,6 +164,15 @@ const { title, subtitle } = Astro.props;
         }
         100% {
             transform: translateY(0);
+        }
+    }
+
+    @media (width <= 600px) {
+        .page-title {
+            width: calc(100vw + 20rem);
+            height: 300px;
+            border-radius: 0 0 20rem 20rem;
+            margin-bottom: 5rem;
         }
     }
 </style>

@@ -1,0 +1,74 @@
+---
+interface Props {
+    name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class="profile">
+    <div class="image">
+        <img
+            width="100%"
+            src=`/2024/image/profile-images/${name}.jpg`
+            onerror="this.style.display='none'"
+        />
+    </div>
+    <div class="name-and-role">
+        <div class="name">{name}</div>
+    </div>
+</div>
+<style>
+    .profile {
+        position: relative;
+        width: calc((100% - 4rem) / 5);
+        min-width: calc((100% - 4rem) / 5);
+        max-width: calc((100% - 4rem) / 5);
+        flex: 1 1 calc((100% - 4rem) / 5);
+        /* margin-bottom: 16px; 아래쪽 여백 추가 */
+        box-sizing: border-box;
+    }
+
+    @media (width <= 900px) {
+        .profile {
+            width: calc((100% - 3rem) / 4);
+            min-width: calc((100% - 3rem) / 4);
+            max-width: calc((100% - 3rem) / 4);
+            flex: 1 1 calc((100% - 3rem) / 4);
+        }
+    }
+    @media (width <= 650px) {
+        .profile {
+            width: calc((100% - 2rem) / 3);
+            min-width: calc((100% - 2rem) / 3);
+            max-width: calc((100% - 2rem) / 3);
+            flex: 1 1 calc((100% - 2rem) / 3);
+        }
+    }
+    @media (width <= 400px) {
+        .profile {
+            width: calc((100% - 1rem) / 2);
+            min-width: calc((100% - 1rem) / 2);
+            max-width: calc((100% - 1rem) / 2);
+            flex: 1 1 calc((100% - 1rem) / 2);
+        }
+    }
+
+    .image {
+        position: relative;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background-color: var(--primary);
+        margin-bottom: 0.8rem;
+    }
+
+    .name {
+        font-size: 1.125rem;
+        text-wrap: nowrap;
+        text-align: center;
+        /* margin-bottom: 0.2rem; */
+    }
+</style>

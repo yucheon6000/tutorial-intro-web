@@ -10,8 +10,6 @@ const allGames = await Astro.glob("./project/*.md");
 allGames.sort((game1, game2) =>
     game1.frontmatter.title.localeCompare(game2.frontmatter.title),
 );
-
-const allGames1 = allGames.slice(0, 4);
 ---
 
 <script
@@ -22,11 +20,11 @@ const allGames1 = allGames.slice(0, 4);
     nomodule
     src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <Layout>
-    <Menu />
+    <Menu useTitleAnim />
     <main>
         <div class="title">
             국립공주대학교 게임디자인학과<br />
-            <strong>제20화 졸업전시회</strong>
+            <strong>제20회 졸업전시회</strong>
         </div>
 
         <div class="main-logo-container">
@@ -97,31 +95,36 @@ const allGames1 = allGames.slice(0, 4);
             <YellowSmallTitle textAline="center">Booth</YellowSmallTitle>
             <BlackSmallTitle textAline="center">부스 배치도</BlackSmallTitle>
         </div>
-    </main>
 
-    {
-        [0, 1, 2].map((idx) => (
-            <div class={"swiper " + "mySwiper" + idx}>
-                <div class="swiper-wrapper">
-                    {allGames.slice(idx * 4, (idx + 1) * 4).map((project) => (
-                        <div class="swiper-slide">
-                            <a href={project.url}>
-                                <img
-                                    src={
-                                        "/2024/image/thumbnails/" +
-                                        project.frontmatter.fileName +
-                                        ".png"
-                                    }
-                                    alt={project.frontmatter.title}
-                                />
-                            </a>
-                        </div>
-                    ))}
+        {
+            [0, 1, 2].map((idx) => (
+                <div class={"swiper " + "mySwiper" + idx}>
+                    <div class="swiper-wrapper">
+                        {allGames
+                            .slice(idx * 4, (idx + 1) * 4)
+                            .map((project) => (
+                                <div class="swiper-slide">
+                                    <a href={project.url}>
+                                        <img
+                                            src={
+                                                "/2024/image/thumbnails/" +
+                                                project.frontmatter.fileName +
+                                                ".png"
+                                            }
+                                            alt={project.frontmatter.title}
+                                        />
+                                    </a>
+                                </div>
+                            ))}
+                    </div>
+                    <div class="swiper-pagination" />
                 </div>
-                <div class="swiper-pagination" />
-            </div>
-        ))
-    }
+            ))
+        }
+        <div class="end-block">
+            * 썸네일을 클릭하면 게임 소개 페이지로 이동합니다.
+        </div>
+    </main>
 </Layout>
 
 <!-- Initialize Swiper -->
@@ -139,7 +142,6 @@ const allGames1 = allGames.slice(0, 4);
             disableOnInteraction: false,
         },
         speed: 10000, // 슬라이드 전환 속도 (밀리초, 2000ms = 2초)
-        // loop: true, // 마지막 슬라이드 이후 처음으로 반복
     });
 
     new Swiper(".mySwiper1", {
@@ -153,7 +155,6 @@ const allGames1 = allGames.slice(0, 4);
             reverseDirection: true,
         },
         speed: 10000, // 슬라이드 전환 속도 (밀리초, 2000ms = 2초)
-        // loop: true, // 마지막 슬라이드 이후 처음으로 반복
     });
 
     new Swiper(".mySwiper2", {
@@ -166,7 +167,6 @@ const allGames1 = allGames.slice(0, 4);
             disableOnInteraction: false,
         },
         speed: 10000, // 슬라이드 전환 속도 (밀리초, 2000ms = 2초)
-        // loop: true, // 마지막 슬라이드 이후 처음으로 반복
     });
 </script>
 
@@ -190,6 +190,7 @@ const allGames1 = allGames.slice(0, 4);
         display: flex;
         justify-content: center;
         align-items: center;
+        aspect-ratio: 200 / 133;
     }
 
     .swiper-slide a,
@@ -199,11 +200,21 @@ const allGames1 = allGames.slice(0, 4);
         height: 100%;
         object-fit: cover;
     }
+
+    @media (width <= 1000px) {
+        .swiper {
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
 </style>
 
 <style is:inline>
     .swiper {
         margin-bottom: 0.625rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
     .swiper,
     .swiper-wrapper {
@@ -213,6 +224,8 @@ const allGames1 = allGames.slice(0, 4);
     .swiper-slide {
         height: auto;
         aspect-ratio: 16 / 9;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
 
     .swiper-wrapper {
@@ -224,10 +237,6 @@ const allGames1 = allGames.slice(0, 4);
     .title {
         margin-top: 6.25rem;
         margin-bottom: 3.125rem;
-    }
-
-    .title strong {
-        font-weight: 900;
     }
 
     /* Main Logo */
@@ -314,10 +323,17 @@ const allGames1 = allGames.slice(0, 4);
         justify-content: center;
         align-items: center;
         margin-bottom: 6.25rem;
-        gap: 2.5rem;
+        column-gap: 2.5rem;
     }
 
     iframe {
         border-radius: 0.625rem;
+    }
+
+    @media (width <= 600px) {
+        .venue-info-container {
+            flex-direction: column;
+            row-gap: 1rem;
+        }
     }
 </style>

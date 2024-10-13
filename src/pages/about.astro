@@ -7,8 +7,13 @@ import YellowSmallTitle from "../components/YellowSmallTitle.astro";
 import BlackSmallTitle from "../components/BlackSmallTitle.astro";
 import Congrats from "../components/Congrats.astro";
 import RoundedContainerForAbout from "../components/RoundedContainerForAbout.astro";
+import Profile from "../components/Profile.astro";
+import ProfileWithoutInfo from "../components/ProfileWithoutInfo.astro";
 
 const allCongrats = await Astro.glob("./congrats/*.md");
+const allProfs = ["경병표", "유석호", "이동열", "이완복", "이동엽", "이종호",
+                    "고정운", "김남재", "최정화", "최홍준", "김정석", "김예은", "김희종"]; // prettier-ignore
+const allStudents = ["강성혁", "강주희", "강준안", "권태서", "김가은", "김도경", "김민욱", "김민지", "김사빈", "김수진", "김지수", "김하나", "니콘스탄틴", "박시원", "박유천", "박정원", "박희경", "설재석", "송은선", "안경은", "안세빈", "양정인", "이국동", "이상훈", "이성래", "이신웅", "이지원", "장서영", "장윤우", "장현정", "정다솜", "주하연", "진현지", "최미선", "함동욱"]; // prettier-ignore
 ---
 
 <Layout>
@@ -22,6 +27,7 @@ const allCongrats = await Astro.glob("./congrats/*.md");
     <Menu />
     <PageTitie title="ABOUT" subtitle="졸업전시회" />
     <main>
+        <!-- 전시 소개 -->
         <YellowSmallTitle>About Exhibition</YellowSmallTitle>
         <BlackSmallTitle>전시 소개</BlackSmallTitle>
 
@@ -30,37 +36,22 @@ const allCongrats = await Astro.glob("./congrats/*.md");
 
             <div class="description">
                 [TUTORIAL]은 공주대학교 게임디자인학과 제 20회 졸업 전시회를
-                맞아 지스타에서 개최한다. <br /><br /><br />
+                맞아 지스타에서 개최한다. <br /><br />
                 우리는 누구나 새로운 무언가를 배우기 전, 본 게임의 튜토리얼의 과정을
-                거치기 마련이다. <br /><br /><br />
+                거치기 마련이다. <br /><br />
                 이 과정 속에서 실전으로 나아가기 위한 기술들을 익히고 경험하며 본인의
-                것으로 만든다. <br /><br /><br />
+                것으로 만든다. <br /><br />
                 약 4년의 학업 기간 동안 쌓은 노력의 산물을 공개함으로써 우리는 비로소
                 [게임]을 시작한다.
             </div>
         </div>
 
         <!-- 전시 소개 영상 -->
-        <BlackSmallTitle>전시 소개 영상</BlackSmallTitle>
-        <iframe
-            class="video end-block"
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/FlyJpenSCYw?si=nEyI3663iyPVp4rg"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
-
         <RoundedContainerForAbout useBackgroundColor rightRound>
-            <YellowSmallTitle>About Us</YellowSmallTitle>
-            <BlackSmallTitle color="white">
-                공주대학교<br />게임디자인학과에서는,
-            </BlackSmallTitle>
-
+            <YellowSmallTitle>Exhibition Introduction Video</YellowSmallTitle>
+            <BlackSmallTitle color="white">전시 소개 영상</BlackSmallTitle>
             <iframe
-                class="video"
+                class="video end-block"
                 width="560"
                 height="315"
                 src="https://www.youtube.com/embed/FlyJpenSCYw?si=nEyI3663iyPVp4rg"
@@ -73,45 +64,33 @@ const allCongrats = await Astro.glob("./congrats/*.md");
 
         <div style="margin-top: -50px;">
             <RoundedContainerForAbout leftRound>
-                <YellowSmallTitle>Vision</YellowSmallTitle>
-                <BlackSmallTitle>
-                    졸업 후 우리는 다양한 분야로 진출합니다.
-                </BlackSmallTitle>
+                <YellowSmallTitle>Professors</YellowSmallTitle>
+                <BlackSmallTitle>교수</BlackSmallTitle>
 
-                <iframe
-                    class="video"
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/FlyJpenSCYw?si=nEyI3663iyPVp4rg"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen></iframe>
-            </RoundedContainerForAbout>
-        </div>
+                <div class="profile-group end-block">
+                    {allProfs.map((name) => <ProfileWithoutInfo name={name} />)}
+                </div>
 
-        <!-- 축사 -->
-        <RoundedContainerForAbout useBackgroundColor rightRound leftRound>
-            <YellowSmallTitle>Congratulation</YellowSmallTitle>
-            <BlackSmallTitle color="white">축사</BlackSmallTitle>
+                <YellowSmallTitle>Students</YellowSmallTitle>
+                <BlackSmallTitle>학생</BlackSmallTitle>
 
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
+                <div class="profile-group end-block">
                     {
-                        allCongrats.map((cong, idx) => (
-                            <Congrats
-                                active={idx == 0}
-                                name={cong.frontmatter.name}
-                                role={cong.frontmatter.role}
-                                role={cong.frontmatter.role}
-                                message={cong.rawContent()}
-                            />
+                        allStudents.map((name) => (
+                            <ProfileWithoutInfo name={name} />
                         ))
                     }
                 </div>
-                <div class="swiper-pagination"></div>
-            </div>
+            </RoundedContainerForAbout>
+        </div>
+
+        <div style="margin-top: -50px;"></div>
+
+        <RoundedContainerForAbout useBackgroundColor rightRound leftRound>
+            <YellowSmallTitle>Supporters</YellowSmallTitle>
+            <BlackSmallTitle color="white">후원</BlackSmallTitle>
+
+            <div class="profile-group end-block"></div>
         </RoundedContainerForAbout>
     </main>
 </Layout>
@@ -163,6 +142,7 @@ const allCongrats = await Astro.glob("./congrats/*.md");
         .poster-and-description {
             flex-direction: column;
             align-items: center;
+            column-gap: 0;
         }
 
         .poster {
@@ -173,5 +153,13 @@ const allCongrats = await Astro.glob("./congrats/*.md");
         .description {
             max-width: 100%;
         }
+    }
+
+    .profile-group {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 1rem; /*  자식 요소들 간의 가로 간격 설정 */
+        row-gap: 1.5rem;
+        justify-content: flex-start; /* 요소들을 왼쪽 정렬 */
     }
 </style>

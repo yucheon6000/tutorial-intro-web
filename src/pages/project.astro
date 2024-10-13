@@ -21,11 +21,10 @@ const allPortfolios = await Astro.glob("./project/*.md");
     <main>
         <div class="selectable-option-group">
             <SelectableOption active className="game">GAMES</SelectableOption>
-            <SelectableOption className="portfolio">PORTFOLIOS</SelectableOption
-            >
+            <!-- <SelectableOption className="portfolio">PORTFOLIOS</SelectableOption> -->
         </div>
 
-        <div class="card-group game">
+        <div class="card-group game end-block">
             {
                 allGames.map((project) => (
                     <ProjectButton
@@ -37,7 +36,7 @@ const allPortfolios = await Astro.glob("./project/*.md");
             }
         </div>
 
-        <div class="card-group portfolio d-none">
+        <!-- <div class="card-group portfolio d-none">
             {
                 allPortfolios.map(
                     (project) =>
@@ -50,7 +49,7 @@ const allPortfolios = await Astro.glob("./project/*.md");
                         ),
                 )
             }
-        </div>
+        </div> -->
     </main>
 </Layout>
 
@@ -90,7 +89,7 @@ const allPortfolios = await Astro.glob("./project/*.md");
         display: flex;
         flex-direction: row;
         column-gap: 25px;
-        margin-bottom: 150px;
+        margin-bottom: 6.25rem;
     }
 
     .card-group {

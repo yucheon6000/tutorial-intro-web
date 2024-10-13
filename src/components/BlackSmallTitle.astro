@@ -8,17 +8,24 @@ interface Props {
 const { textAline, color, bottomMargin } = Astro.props;
 ---
 
-<p><slot /></p>
+<p
+    style={textAline == "center"
+        ? "margin-left: -100%; margin-right: -100%;"
+        : ""}
+>
+    <slot />
+</p>
 <style
     define:vars={{
         textAline,
         color: color || "var(--black)",
-        bottomMargin: (bottomMargin != null ? bottomMargin : 6.25) + "rem",
+        bottomMargin: (bottomMargin != null ? bottomMargin : 3) + "rem",
     }}
 >
     p {
         font-size: 2rem;
         font-weight: 700;
+        text-wrap: nowrap;
         color: var(--color);
         margin-bottom: var(--bottomMargin);
         text-align: var(--textAline);

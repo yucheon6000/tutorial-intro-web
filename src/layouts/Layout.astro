@@ -94,13 +94,14 @@ const { title } = Astro.props;
     </body>
 </html>
 <style is:global>
-    @font-face {
-        font-family: "Pretendard-Regular";
-        src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+    /* @font-face {
+        font-family: "Pretendard";
+        src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard.woff")
             format("woff");
         font-weight: 400;
         font-style: normal;
-    }
+    } */
     @font-face {
         font-family: "LOTTERIACHAB";
         src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2")
@@ -119,13 +120,33 @@ const { title } = Astro.props;
             rgb(var(--accent-light)) 30%,
             white 60%
         );
-        --primary: #0b3088;
+        --primary: #193c8f;
         --primary-dark: #19284c;
-        --black: #424551;
-        font-size: 16px;
+        --black: #212529;
+
+        --mobile: 500px;
+
+        font-weight: normal !important;
+        color: var(--black);
     }
-    html * :not(.lotte-font) {
-        font-family: "Pretendard-Regular", system-ui, sans-serif !important;
+
+    html :not(.lotte-font) {
+        font-family:
+            "Pretendard Variable",
+            Pretendard,
+            -apple-system,
+            BlinkMacSystemFont,
+            system-ui,
+            Roboto,
+            "Helvetica Neue",
+            "Segoe UI",
+            "Apple SD Gothic Neo",
+            "Noto Sans KR",
+            "Malgun Gothic",
+            "Apple Color Emoji",
+            "Segoe UI Emoji",
+            "Segoe UI Symbol",
+            sans-serif;
     }
 
     html {
@@ -156,10 +177,11 @@ const { title } = Astro.props;
     }
 
     .end-block {
-        margin-bottom: 9.375rem;
+        margin-bottom: 9.375rem !important;
     }
 
     main {
+        width: 100%;
         max-width: 1000px;
         margin: 0 auto;
     }
@@ -174,9 +196,13 @@ const { title } = Astro.props;
         }
     }
 
-    @media (width <= 500px) {
+    @media (width <= 600px) {
         main {
             padding: 0 20px;
+        }
+
+        :root {
+            font-size: 14px;
         }
     }
 
@@ -188,5 +214,12 @@ const { title } = Astro.props;
 
     .color-white {
         color: white;
+    }
+
+    .block-drag {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-use-select: none;
+        user-select: none;
     }
 </style>
